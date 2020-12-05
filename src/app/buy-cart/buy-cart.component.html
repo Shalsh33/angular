@@ -1,0 +1,6 @@
+<h2>Objetos en el carrito</h2>
+<ul>
+    <li *ngFor="let product of _product_list | async">
+        {{product.name}}: {{product.qtb}} unidades.
+    </li>
+</ul>

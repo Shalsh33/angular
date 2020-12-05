@@ -1,0 +1,38 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Solicitar</th>
+            <th>Acciones</th>
+		    
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td></td> <th>Categoría Gráfica</th></tr>
+        <tr *ngFor="let product of productosGrafica" [ngClass]="{'discount': product.discount}">
+            <td><img [src]="product.img" [alt]="product.name"/></td>
+            <td> {{product.name}} </td>
+            <td class="desc"> {{product.desc}} </td>
+            <td> {{product.price | currency}} </td>
+            <td class="stock"> <span *ngIf="product.stock != 0"> {{product.stock}} </span> <span *ngIf="product.stock == 0" class="red">Actualmente sin stock.</span> </td>
+            <td><app-botonera [(qtb)]="product.qtb" [stock]="product.stock" (custom)="noHayMas()" *ngIf="product.stock != 0"></app-botonera></td>
+            <td><button class="btn btn-dark" (click)="addToCart(product)">Agregar al carrito</button></td>
+            
+        </tr>
+        <tr> <td></td> <th>Categoría 3D</th></tr>
+        <tr *ngFor="let product of productos3D" [ngClass]="{'discount': product.discount}">
+            <td class="foto"><img [src]="product.img" [alt]="product.name"/></td>
+            <td> {{product.name}} </td>
+            <td> {{product.desc}} </td>
+            <td> {{product.price | currency}} </td>
+            <td> <span *ngIf="product.stock != 0"> {{product.stock}} </span> <span *ngIf="product.stock == 0">Actualmente sin stock.</span> </td>
+            <td><app-botonera [(qtb)]="product.qtb" [stock]="product.stock" (custom)="noHayMas()" *ngIf="product.stock != 0"></app-botonera></td>
+            <td><button class="btn btn-dark" (click)="addToCart(product)">Agregar al carrito</button></td>
+            
+        </tr>
+     </tbody>
+</table>
